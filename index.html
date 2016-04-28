@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+<title>Declinator</title>
+<meta charset="utf-8">
+<style>
+body{
+  background-image: url("./wallpaper.jpeg");
+}
+/* LIST #4 */
+#list4 { width:900px; font-family:Georgia, Times, serif; font-size:25px; }
+#list4 ul { list-style: none; }
+#list4 ul li { }
+#list4 ul li a { display:block; text-decoration:none; color:#000000; background-color:#F0DC82; line-height:30px;
+  border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:#CCCCCC; padding-left:10px; cursor:pointer; }
+#list4 ul li a:hover { color:#FFFFFF; background-image:url(../images/hover.png); background-repeat:repeat-x; }
+#list4 ul li a strong { margin-right:10px; }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<body>
+<center>
+<div id="list4">
+   <ul>
+      <li><a href="/substantivum/"><strong>
+      <font class="lang ru">Программа для склонения латинских существительных</font>
+      <font class="lang de">Programm für Deklination der lateinischen Substantiven</font>
+      <font class="lang en">Program for latin nouns declension</font>
+      <font class="lang la">Programma pro declinatione substantivorum latinorum</font>
+      </strong><br>
+      <font class="lang ru">Позволяет просклонять любое латинское существительное</font>
+      <font class="lang de">Ermöglicht Deklination für jedes lateinisches Substantiv</font>
+      <font class="lang en">You decline any latin noun with it</font>
+      <font class="lang la">Omnia substantiva latina cum ea declinare potes</font>
+      </a></li>
+      <li><a href="/adjectivum/"><strong>
+      <font class="lang ru">Программа для склонения латинских прилагательных</font>
+      <font class="lang de">Programm für Deklination der lateinischen Adjektiven</font>
+      <font class="lang en">Program for latin adjectives declension</font>
+      <font class="lang la">Programma pro declinatione adjectivorum
+      latinorum</font><sup><font color="red">BETA</font></sup></strong><br>
+      <font class="lang ru">Позволяет просклонять любое латинское прилагательное</font>
+      <font class="lang de">Ermöglicht Deklination für jedes lateinisches Adjektiv</font>
+      <font class="lang en">You decline any latin adjective with it</font>
+      <font class="lang la">Omnia adjectiva latina cum ea declinare potes</font>
+      </a></li>
+   </ul>
+</div>
+</center>
+<script>
+var lang = document.cookie.match(/system_lang=.{2}/g)[0].match(/.{2}$/g)[0];
+$('.lang').hide();
+$('.' + lang).show();
+</script>
+<a href="https://github.com/prodotiscus" style="position:absolute;left:84%;bottom:0.2%;"><img height="64" src="//lingua-latina.tk/developed.png"></a>
+</body>
+</html>

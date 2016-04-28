@@ -1,0 +1,25 @@
+.comment {
+    background-color: #EEDC82;
+    color: black;
+    width: 400px;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: Times New Roman;
+}
+ 
+.changer {
+	background-color:#ed8223;
+	color:#fff;
+	font-family:'Helvetica Neue',sans-serif;
+	font-size:10px;
+	line-height:15px;
+	border-radius:20px;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border:0;
+	text-shadow:#C17C3A 0 -1px 0;
+	width:120px;
+	height:40px;
+        cursor:pointer;
+
+}
