@@ -96,6 +96,11 @@ body{
 <script type="text/javascript">
 function Send(){
   var str = $("#word").serialize();
+  if ($('#word').val().match(/,/)) {
+     $('[name=dictionary]').attr('checked', false);
+  } else {
+     $('[name=dictionary]').attr('checked', true);
+  }
   if($('[name="dictionary"]')[0].checked == true){
     str += "&dictionary=1";
   }
@@ -104,7 +109,7 @@ function Send(){
   $("#result")[0].innerHTML = '<iframe src="../substantive/index.pl?'+str+'" width="1000" height="500" onload="IR();"></iframe>';
 }
 function word_value(val,kc){
-  val = val.replace(/\<[^>]*\>/g, "");
+  val = val.replace(/\<[^>]*\>|\n/g, "");
   $("#word").val(val);
   if(kc == 13){
     $(".word")[0].innerHTML = $(".word")[0].innerHTML.replace(/\<br[^>]*\>/g, '');
@@ -198,6 +203,6 @@ window.onload = function () {
     $('.lang').hide();
     $('.' + lang).show();
 </script>
-<a href="https://github.com/prodotiscus" style="position:absolute;left:84%;bottom:0.2%;"><img height="64" src="//lingua-latina.tk/developed.png"></a>
+<a href="https://github.com/prodotiscus/lingua-latina" style="position:absolute;left:84%;bottom:0.2%;"><img height="64" src="//lingua-latina.tk/developed.png"></a>
 </body>
 </html>

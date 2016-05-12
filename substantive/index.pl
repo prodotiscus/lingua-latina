@@ -39,6 +39,10 @@ $query = new CGI;
 print $query->header(-type => 'text/html',
 -charset => 'utf-8');
 our $system_lang = $query->cookie('system_lang');
+our $dictionary = 0;
+if ( $query->param('word') !~ m/,/g ) {
+     $dictionary = 1;
+}
 if ($query->param) {
     if($query->param('word') and not $query->param('word') =~ m/\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-/g){
         ###
@@ -59,7 +63,7 @@ if ($query->param) {
             our $decl = "exception";
         }
         #
-        if($query->param('dictionary') and $e == 0){
+        if($dictionary and $e == 0){
             $word = from_dict($word);
             $word =~ s/^\s*|\s*$//g;
         }

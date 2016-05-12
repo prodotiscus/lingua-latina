@@ -19,7 +19,7 @@ tl = {
         r'Прилагательное 3 склонения одного окончания': 'Dritte Deklination, Neutrum Singular Nominativ ist für alle Geschlechten identisch',
         r'ПАДЕЖ': 'KASUS',
         r'РОД': 'GESCHLECHT',
-        r'МУЖСКОЙ': 'MASCULINUM',
+        r'МУЖСКОЙ': 'MASKULINUM',
         r'ЖЕНСКИЙ': 'FEMININUM',
         r'СРЕДНИЙ': 'NEUTRUM'
     },

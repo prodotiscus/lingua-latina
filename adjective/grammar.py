@@ -7,7 +7,10 @@ params = cgi.FieldStorage()
 print("Content-Type: text/html; charset=utf-8")
 print()
 #
-if not 'dict' in params:
+dic = False
+if not r(params['word'].value).c(','):
+    dic = True
+if not dic:
     word = params['word'].value
 else:
     try:
