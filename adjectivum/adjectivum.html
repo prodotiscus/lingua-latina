@@ -15,14 +15,14 @@
     font-family: URW Chancery L;
 }
 body{
-  background-image:url("../wallpaper.jpeg");
+  background-image: url("../wallpaper.jpeg");
   width: 1200px;
   height: 800px;
 }
 .button {
 	margin: 10px;
 	text-decoration: none;
-	font: bold 25px 'Trebuchet MS',Arial, Helvetica;
+	font: bold 25px 'Trebuchet MS', Arial, Helvetica;
 	display: inline-block;
 	text-align: center;
 	color: #fff;
@@ -89,56 +89,46 @@ body{
     outline: 0 none;
     padding: 1px 25px 1px 1px;
     width: 400px;
+    font-size: 18px;
+    text-align: center;
     word-wrap: break-word;
 }
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="../common.js"></script>
 <script type="text/javascript">
-function Send(){
-  var str = $("#word").serialize();
-  if ($('#word').val().match(/,/)) {
-     $('[name=dictionary]').attr('checked', false);
-  } else {
-     $('[name=dictionary]').attr('checked', true);
-  }
-  if($('[name="dictionary"]')[0].checked == true){
+function Send () {
+  str = 'word=' + $("#word").val();
+  if ( $('[name="dictionary"]')[0].checked === true ) {
     str += "&dict=1";
   }
   str += ("&" + document.cookie.replace('system_', ''));
-  $("#loading")[0].style.display = "";
-  $("#result")[0].style.display = "none";
-  $("#result")[0].innerHTML = '<iframe src="../adjective/grammar.py?'+str+'" width="1000" height="560" onload="IR();"></iframe>';
+  $("#loading").hide();
+  $("#result").hide();
+  $("#result").html('<iframe src="../adjective/grammar.py?' + str + '" width="1000" height="560" onload="IR();"></iframe>');
 }
-function word_value(val,kc){
-  val = val.replace(/\<[^>]*\>/g, "");
-  $("#word").val(val);
-  if(kc == 13){
-    $(".word")[0].innerHTML = $(".word")[0].innerHTML.replace(/\<br[^>]*\>/g, '');
-    Send();
-  }
+function IR () {
+  $("#loading").hide();
+  $("#result").show();
+  $('.all').hide();
+  $('.home').hide();
+  $('.changer').hide();
+  $('#result iframe').attr('height', "860");
+  $('#turn').show();
 }
-function IR(){
-  $("#loading").css({display:  "none"});
-  $("#result").css({display:  ""});
-  $('.all').css({display:  "none"});
-  $('.home').css({display:  "none"});
-  $('.changer').css({display:  "none"});
-  $('#result iframe')[0].height = "860";
-  $('#turn').css({display:  ""});
-}
-function turn(el) {
-  el.style.display = 'none';
-  $('.all').css({display:  ""});
-  $('.changer').css({display: ""});
-  $('.home').css({display: ""});
-  $('#turn').css({display:  "none"});
-  $('#result iframe')[0].height = "560";
+function turn (el) {
+  $( el ).hide();
+  $('.all').show();
+  $('.changer').show();
+  $('.home').show();
+  $('#turn').hide();
+  $('#result iframe').attr('height', "560");
+  $(".word").focus();
 }
 window.onload = function () {
-  document.getElementById("word").value = "";
-  document.getElementsByName("dictionary")[0].checked = false;
-  document.getElementsByClassName("word")[0].focus();
+  $("#word").val("");
+  $("[name=dictionary]").attr('checked', false);
+  $(".word").focus();
 };
 function CL() {
     eraseCookie('system_lang');
@@ -149,14 +139,14 @@ function CL() {
 <body>
 <a href="//lingua-latina.tk" class="home"><img src="../home.png" height="45"></a>
 <button onclick="CL();" class="changer" style="position:absolute;">
-        <font class="lang ru" style="font-size:15px;">Изменить язык</font>
-        <font class="lang de" style="font-size:15px;">Sprache ändern</font>
-        <font class="lang en" style="font-size:15px;">Change language</font>
-        <font class="lang la" style="font-size:15px;">Linguam alterare</font>
+        <font class="lang ru" style="font-size: 15px;">Изменить язык</font>
+        <font class="lang de" style="font-size: 15px;">Sprache ändern</font>
+        <font class="lang en" style="font-size: 15px;">Change language</font>
+        <font class="lang la" style="font-size: 15px;">Linguam alterare</font>
 </button>
   <center>
     <noscript><meta http-equiv="refresh" content="0; url=http://www.enable-javascript.com/"></noscript>
-    <img src="../turn.png" align="left" style="cursor: pointer; display: none;" onclick="turn(this);" title="Вернуть поле ввода" id="turn"/>
+    <img src="../turn.png" align="left" style="cursor: pointer; display: none;" onclick="turn(this);" title="Вернуть поле ввода" id="turn" />
     <font class="all">
     <h1 class="lat">Adjectivorum Latinorum Declinator&nbsp;
     <sup><font color="red" class="rus">BETA</font></sup>
@@ -166,14 +156,20 @@ function CL() {
         <font class="lang de">Programm für Deklination der lateinischen Adjektiven</font>
         <font class="lang en">Program for latin adjectives declension</font>
         <font class="lang la">Programma pro declinatione adjectivorum latinorum</font>
-        &nbsp;<sup><font color="red">BETA</font></sup></h1><!---->
-    <div class="word" contenteditable="true" onkeyup="word_value($('.word')[0].innerHTML,event.keyCode);"></div><br>
-    <input type="hidden" id="word" name="word"><br>
+        &nbsp;<sup><font color="red">BETA</font></sup></h1>
+        
+        <!-- INPUT -->
+    <input class="word" type="text" id="word" onkeyup="if (event.keyCode == 13) {Send();}">
+    <br><br>
+    
+    <!-- END OF INPUT -->
     <input type="checkbox" name="dictionary"> <label for="dictionary">
-        <font class="lang ru">Использовать информацию из словаря</font>
-        <font class="lang de">Aus dem Wörterbuch Informationen einsetzen</font>
-        <font class="lang en">Use data from the dictionary</font>
-        <font class="lang la">Utere ex vocabulario notitas</font>
+        <font class="rus" style="font-size: 25px;">
+            <font class="lang ru">Использовать информацию из словаря</font>
+            <font class="lang de">Aus dem Wörterbuch Informationen einsetzen</font>
+            <font class="lang en">Use data from the dictionary</font>
+            <font class="lang la">Utere ex vocabulario notitas</font>
+        </font>
     </label><br>
     <button class="button button-brown" onclick="Send();">
         <font class="lang ru">Просклонять</font>
@@ -221,6 +217,6 @@ var lang = document.cookie.match(/system_lang=.{2}/g)[0].match(/.{2}$/g)[0];
 $('.lang').hide();
 $('.' + lang).show();
 </script>
-<a href="https://github.com/prodotiscus/lingua-latina" style="position:absolute;left:84%;bottom:0.2%;"><img height="64" src="//lingua-latina.tk/developed.png"></a>
+<a href="https://github.com/prodotiscus/lingua-latina" style="position: absolute; left: 84%; bottom: 0.2%;"><img height="64" src="//lingua-latina.tk/developed.png"></a>
 </body>
 </html>
