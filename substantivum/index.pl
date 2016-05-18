@@ -11,5 +11,5 @@ if($query->cookie('system_lang')) {
     print $content;
 }
 else {
-    print(read_file('chooselang.html'));
+    print(read_file('../chooselang.html'));
 }
